@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     /// 外部から呼び出すときに使うインスタンスです。
     /// </summary>
     public static GameController instance;
+    static AudioSource audioSource;
 
     public GameObject normalBall;
     public GameObject normalBlock;
@@ -26,13 +27,17 @@ public class GameController : MonoBehaviour
     public int blocksNum; // current amount of blocks
     public int score;
 
+    public float fallenItemSpeed = 1f;
     private bool gameFinished = false;
 
     private void Awake()
     {
         instance = this;
     }
-    
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     /// <summary>
     /// ボールを生成します。必ずここから生成してください。
     /// </summary>
