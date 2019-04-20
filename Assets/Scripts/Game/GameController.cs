@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
         else
         {
             AddBall(Instantiate(normalBall, pos, Quaternion.identity).GetComponent<Ball>());
-            ballsLeft--;
+            if(isUser) ballsLeft--;
             return true;
         }
     }
