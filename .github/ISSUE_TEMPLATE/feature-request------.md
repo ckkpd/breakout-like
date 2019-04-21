@@ -2,7 +2,7 @@
 name: Feature request(機能提案)
 about: Suggest an idea for this project(機能提案をする)
 title: ''
-labels: ''
+labels: enhancement
 assignees: private-yusuke
 
 ---
