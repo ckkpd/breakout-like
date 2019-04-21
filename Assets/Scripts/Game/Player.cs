@@ -9,12 +9,13 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb2d;
 
-    private bool moveRight;
-    private bool moveLeft;
+    private Vector2 position;
+    private Vector2 screenToWorldPosition;
+    private float startY;
     private bool pressSpace;
 
-    public float baseSpeed = 300f;
     public float reflexParameter = 10;
+    public float clampRange = 340;
     public bool isSub = false;
 
     /// <summary>
@@ -23,6 +24,10 @@ public class Player : MonoBehaviour
     /// </summary>
     private Dictionary<string, float> effectDurations = new Dictionary<string, float>();
 
+    private void Awake()
+    {
+        startY = gameObject.transform.position.y;
+    }
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -30,18 +35,16 @@ public class Player : MonoBehaviour
     
     private void Update()
     {
-        moveRight = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
-        moveLeft = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
         pressSpace = Input.GetKeyDown(KeyCode.Space);
     }
 
     private void FixedUpdate()
     {
-        float tmpSpeed = baseSpeed;
-        if ((moveRight && moveLeft) || (!moveRight && !moveLeft)) tmpSpeed = 0f;
-        else if (moveLeft) tmpSpeed *= -1;
-
-        rb2d.velocity = new Vector2(tmpSpeed, rb2d.velocity.y);
+        position = Input.mousePosition;
+        screenToWorldPosition = Camera.main.ScreenToWorldPoint(position);
+        screenToWorldPosition.y = startY;
+        screenToWorldPosition.x = Mathf.Clamp(screenToWorldPosition.x, -clampRange, clampRange);
+        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, screenToWorldPosition, 0.5f);
 
         if (pressSpace)
         {
