@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rb2d;
     public float initialSpeed = 300f;
     public float leastSpeed = 250f;
-    public float amplify = 0.01f;
+    public float maximumSpeed = 1000f;
 
     public int baseStrength = 1;
     public int strength;
@@ -33,6 +33,10 @@ public class Ball : MonoBehaviour
         {
             rb2d.velocity = rb2d.velocity.normalized * leastSpeed;
         }
+        if(rb2d.velocity.magnitude > maximumSpeed)
+        {
+            rb2d.velocity = rb2d.velocity.normalized * maximumSpeed;
+        }
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,7 +45,6 @@ public class Ball : MonoBehaviour
         {
             collision.gameObject.GetComponent<Block>().SubstractHP(strength);
             blockTouched++;
-            rb2d.AddForce(new Vector2(0, amplify));
         }
     }
 

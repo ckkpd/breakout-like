@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2947059524322882280}
   - component: {fileID: 709614041182562058}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialSpeed: 200
-  leastSpeed: 300
-  amplify: 100
+  leastSpeed: 200
+  maximumSpeed: 1000
   baseStrength: 1
   strength: 0
