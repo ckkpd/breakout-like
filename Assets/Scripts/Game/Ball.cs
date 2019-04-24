@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
     public float initialSpeed = 300f;
     public float leastSpeed = 250f;
     public float maximumSpeed = 1000f;
+    public float degreeClamp = Mathf.PI / 6;
 
     public int baseStrength = 1;
     public int strength;
@@ -26,7 +27,7 @@ public class Ball : MonoBehaviour
         strength = baseStrength;
     }
     
-    void Update()
+    void FixedUpdate()
     {
         // あまりにもボールが遅いときはスピードをつけてあげる
         if(rb2d.velocity.magnitude < leastSpeed)
@@ -37,6 +38,13 @@ public class Ball : MonoBehaviour
         {
             rb2d.velocity = rb2d.velocity.normalized * maximumSpeed;
         }
+
+        float magnitude = rb2d.velocity.magnitude;
+        float theta = Mathf.Acos(rb2d.velocity.normalized.x);
+        theta = Mathf.Clamp(theta, degreeClamp, Mathf.PI - degreeClamp);
+        Vector2 vec = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta) * rb2d.velocity.y < 0 ? -1 : 1) * magnitude;
+
+        rb2d.velocity = vec;
     }
     
     private void OnCollisionEnter2D(Collision2D collision)

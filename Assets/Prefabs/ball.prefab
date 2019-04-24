@@ -134,5 +134,6 @@ MonoBehaviour:
   initialSpeed: 200
   leastSpeed: 200
   maximumSpeed: 1000
+  degreeClamp: 0.5235988
   baseStrength: 1
   strength: 0
