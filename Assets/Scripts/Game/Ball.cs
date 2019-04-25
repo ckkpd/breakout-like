@@ -41,6 +41,7 @@ public class Ball : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.collider);
         if(collision.gameObject.CompareTag("Block"))
         {
             collision.gameObject.GetComponent<Block>().SubstractHP(strength);
