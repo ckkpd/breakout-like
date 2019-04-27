@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     public float reflexParameter = 10;
     public float clampRange = 340;
+    public float ballSpawnOffset = 10f;
     public bool isSub = false;
 
     /// <summary>
@@ -48,7 +49,7 @@ public class Player : MonoBehaviour
 
         if (pressSpace)
         {
-            if(!isSub) GameController.instance.SpawnBall(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 40), true);
+            if(!isSub) GameController.instance.SpawnBall(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + ballSpawnOffset), true);
         }
 
         foreach(string key in effectDurations.Keys)
@@ -70,6 +71,7 @@ public class Player : MonoBehaviour
             float dy = Mathf.Sqrt(
                 Mathf.Pow(ballRb2d.velocity.magnitude, 2) - Mathf.Pow(dx, 2)
             );
+            Debug.Log(Mathf.Pow(ballRb2d.velocity.magnitude, 2) - Mathf.Pow(dx, 2));
             if(isSub) dy *= -1;
             ballRb2d.velocity = new Vector2(dx, dy);
         }

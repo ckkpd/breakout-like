@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 /// <summary>
 /// ボール
@@ -26,7 +27,7 @@ public class Ball : MonoBehaviour
         strength = baseStrength;
     }
     
-    void Update()
+    void FixedUpdate()
     {
         // あまりにもボールが遅いときはスピードをつけてあげる
         if(rb2d.velocity.magnitude < leastSpeed)
@@ -37,6 +38,9 @@ public class Ball : MonoBehaviour
         {
             rb2d.velocity = rb2d.velocity.normalized * maximumSpeed;
         }
+
+        // 何かの理由でボールが異常な挙動を示したとき、削除する
+        if (Vector2.Distance(rb2d.position, Vector2.zero) > 1000) Destroy(this.gameObject);
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
@@ -44,8 +48,13 @@ public class Ball : MonoBehaviour
         Debug.Log(collision.collider);
         if(collision.gameObject.CompareTag("Block"))
         {
-            collision.gameObject.GetComponent<Block>().SubstractHP(strength);
-            blockTouched++;
+            foreach (ContactPoint2D point in collision.contacts) {
+                Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
+                tilemap.SetTile(tilemap.WorldToCell(point.point), null);
+                TileBase tile = tilemap.GetTile(tilemap.WorldToCell(point.point));
+
+                // TODO: TileごとにBlockのComponentをあてたい
+            }
         }
     }
 

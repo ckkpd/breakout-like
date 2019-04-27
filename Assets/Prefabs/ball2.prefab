@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1336351630947942275}
   m_Layer: 0
   m_Name: ball2
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ab48ec3d94f78449dc8ac04811508d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 10
-  leastSpeed: 5
+  initialSpeed: 20
+  leastSpeed: 10
   maximumSpeed: 100
   baseStrength: 1
   strength: 0
@@ -115,7 +115,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3762365498019ad46ac2f0833907cdf4, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

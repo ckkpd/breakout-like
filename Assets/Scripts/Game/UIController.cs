@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// ゲーム中のUIの管理をします。
+/// このComponentをもつGameObjectは一つのみであることが保証されます。
 /// </summary>
 public class UIController : MonoBehaviour
 {

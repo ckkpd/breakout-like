@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Stage01 : MonoBehaviour
 {
+    /*
     public int startX = -300, startY = 100, intervalX = 75, intervalY = 25, endX = 380, endY = -240;
 
     void Start()
@@ -32,4 +33,5 @@ public class Stage01 : MonoBehaviour
             }
         }
     }
+    */
 }

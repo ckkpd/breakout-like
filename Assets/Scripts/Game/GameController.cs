@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour
     static AudioSource audioSource;
 
     public GameObject normalBall;
-    public GameObject normalBlock;
 
     public int ballsLeft = 3;
     public int ballsNum; // current amount of balls
