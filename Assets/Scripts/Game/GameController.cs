@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 /// <summary>
 /// ゲームの中で使用されるパラメータの管理をします。
@@ -18,6 +19,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     public static GameController instance;
     static AudioSource audioSource;
+    public static uint currentStageID;
 
     public GameObject normalBall;
 
@@ -28,14 +30,21 @@ public class GameController : MonoBehaviour
 
     public float fallenItemSpeed = 1f;
     private bool gameFinished = false;
+    private Tilemap tilemap;
 
     private void Awake()
     {
-        instance = this;
     }
     private void Start()
     {
+        instance = this;
         audioSource = GetComponent<AudioSource>();
+        tilemap = GameObject.FindGameObjectWithTag("Block").GetComponent<Tilemap>();
+        foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+        {
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+            if (tilemap.HasTile(localPlace)) blocksNum++;
+        }
     }
     /// <summary>
     /// ボールを生成します。必ずここから生成してください。
@@ -80,7 +89,7 @@ public class GameController : MonoBehaviour
     public void OnBlockDestroyed(Block block)
     {
         blocksNum--;
-        score += block.score;
+        score += 100;
         if(blocksNum == 0)
         {
             Debug.Log("You won!");

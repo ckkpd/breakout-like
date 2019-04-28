@@ -52,7 +52,7 @@ public class Ball : MonoBehaviour
                 Tilemap tilemap = collision.gameObject.GetComponent<Tilemap>();
                 tilemap.SetTile(tilemap.WorldToCell(point.point), null);
                 TileBase tile = tilemap.GetTile(tilemap.WorldToCell(point.point));
-
+                GameController.instance.OnBlockDestroyed(null);
                 // TODO: TileごとにBlockのComponentをあてたい
             }
         }
