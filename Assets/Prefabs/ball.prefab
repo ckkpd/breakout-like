@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1778873850102045848}
   - component: {fileID: 2947059524322882280}
   - component: {fileID: 709614041182562058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ab48ec3d94f78449dc8ac04811508d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 200
-  leastSpeed: 200
+  initialSpeed: 300
+  leastSpeed: 300
   maximumSpeed: 1000
   baseStrength: 1
   strength: 0

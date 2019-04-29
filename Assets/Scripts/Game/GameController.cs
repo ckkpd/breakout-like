@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     public int ballsLeft = 3;
     public int ballsNum; // current amount of balls
     public int blocksNum; // current amount of blocks
-    public int score;
+    public static int score;
 
     public float fallenItemSpeed = 1f;
     private bool gameFinished = false;
@@ -37,6 +37,16 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public static void initializeGame()
+    {
+        if(!instance.gameFinished)
+        {
+            throw new System.Exception("The game has not been ended!");
+        }
+
+        score = 0;
     }
     /// <summary>
     /// ボールを生成します。必ずここから生成してください。

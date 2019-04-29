@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameText.text = string.Format(gameTextFormat, GameController.instance.ballsLeft, GameController.instance.blocksNum, GameController.instance.score);
+        gameText.text = string.Format(gameTextFormat, GameController.instance.ballsLeft, GameController.instance.blocksNum, GameController.score);
     }
 
     /// <summary>
