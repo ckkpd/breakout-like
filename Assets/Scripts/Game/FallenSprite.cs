@@ -20,7 +20,6 @@ public abstract class FallenSprite : MonoBehaviour, IEffect
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Atatta");
         if(collision.gameObject.CompareTag("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();

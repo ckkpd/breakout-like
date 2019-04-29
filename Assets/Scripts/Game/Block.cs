@@ -7,12 +7,13 @@ using UnityEngine;
 /// </summary>
 public class Block : MonoBehaviour
 {
-    public int score = 100;
-    public int hp = 1;
+    public BlockModel model;
+    int currentHp;
 
     void Start()
     {
         GameController.instance.AddBlock(this);
+        currentHp = model.hp;
     }
 
     /// <summary>
@@ -21,9 +22,18 @@ public class Block : MonoBehaviour
     /// <param name="n">ブロックに与えるダメージ</param>
     public void SubstractHP(int n)
     {
-        hp -= n;
-        Debug.Log(hp);
-        if (hp <= 0) Destroy(this.gameObject);
+        if (model.isUnbreakable)
+        {
+            GameController.instance.audioSource.PlayOneShot(model.soundOnTouch);
+            return;
+        }
+        currentHp -= n;
+        if (currentHp <= 0) Destroy(this.gameObject);
+        else
+        {
+            GameController.AddScore(model.score);
+            GameController.instance.audioSource.PlayOneShot(model.soundOnTouch);
+        }
     }
 
     private void OnDestroy()

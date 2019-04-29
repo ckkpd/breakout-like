@@ -19,7 +19,7 @@ public class Stage01 : MonoBehaviour
     /// </summary>
     void Generate()
     {
-        GameObject block = GameController.instance.normalBlock;
+        GameObject block = GameController.instance.blockList.blockList[0];
 
         uint cnt = 0;
         for (int i = startX; i < endX; i += intervalX)

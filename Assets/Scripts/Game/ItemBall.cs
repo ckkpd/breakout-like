@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBall : FallenSprite, IEffect
+public class ItemBall : FallenSprite
 {
     public override void OnEffect(Player player)
     {

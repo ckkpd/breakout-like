@@ -17,15 +17,19 @@ public class GameController : MonoBehaviour
     /// 外部から呼び出すときに使うインスタンスです。
     /// </summary>
     public static GameController instance;
-    static AudioSource audioSource;
+    public AudioSource audioSource;
 
     public GameObject normalBall;
-    public GameObject normalBlock;
+    public BlockListModel blockList;
 
     public int ballsLeft = 3;
     public int ballsNum; // current amount of balls
     public int blocksNum; // current amount of blocks
+    public int breakableBlocksNum; // current amount of breakable blocks
     public static int score;
+
+    public ItemListModel itemlist;
+    public float itemDropProbability = 0.1f;
 
     public float fallenItemSpeed = 1f;
     private bool gameFinished = false;
@@ -87,12 +91,26 @@ public class GameController : MonoBehaviour
     {
         blocks.Add(block);
         blocksNum++;
+        if (!block.model.isUnbreakable) breakableBlocksNum++;
+    }
+
+    public static void AddScore(int score)
+    {
+        GameController.score += score;
     }
     public void OnBlockDestroyed(Block block)
     {
-        blocksNum--;
-        score += block.score;
-        if(blocksNum == 0)
+        float rnd = Random.Range(0f, 1f);
+        if(rnd <= itemlist.itemDropProbability)
+        {
+            Debug.Log("come!");
+            int itemrnd = Random.Range(0, itemlist.items.Capacity);
+            Instantiate(itemlist.items[itemrnd], block.transform.position, Quaternion.identity);
+        }
+        breakableBlocksNum--;
+        audioSource.PlayOneShot(block.model.soundOnBreak);
+        AddScore(block.model.score);
+        if(breakableBlocksNum == 0)
         {
             Debug.Log("You won!");
             gameFinished = true;

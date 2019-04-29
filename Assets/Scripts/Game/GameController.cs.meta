@@ -4,11 +4,11 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - audioSource: {instanceID: 0}
   - normalBall: {fileID: 5517737011889041904, guid: ed5f6b37a9605f0479c5d183712c639f,
       type: 3}
-  - normalBlock: {fileID: 9076496345157895152, guid: 2824a944978d50d419cd213c1365b8dc,
-      type: 3}
-  - gameText: {instanceID: 0}
+  - blockList: {fileID: 11400000, guid: 53ebba0b0e2d4c04dbed8f20f860f26a, type: 2}
+  - itemlist: {fileID: 11400000, guid: f75bb8f6b299f00489e4975f5d113b12, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
