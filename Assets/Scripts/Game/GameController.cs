@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
     public float itemDropProbability = 0.1f;
 
     public float fallenItemSpeed = 1f;
-    private bool gameFinished = false;
+    public static bool gameFinished = false;
 
     private void Awake()
     {
@@ -45,12 +45,13 @@ public class GameController : MonoBehaviour
 
     public static void initializeGame()
     {
-        if(!instance.gameFinished)
+        if(!gameFinished)
         {
             throw new System.Exception("The game has not been ended!");
         }
 
         score = 0;
+        gameFinished = false;
     }
     /// <summary>
     /// ボールを生成します。必ずここから生成してください。
@@ -91,6 +92,7 @@ public class GameController : MonoBehaviour
     {
         blocks.Add(block);
         blocksNum++;
+        Debug.Log(block.model.isUnbreakable);
         if (!block.model.isUnbreakable) breakableBlocksNum++;
     }
 
