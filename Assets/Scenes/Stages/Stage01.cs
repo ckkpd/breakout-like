@@ -26,9 +26,9 @@ public class Stage01 : MonoBehaviour
         uint cnt = 0;
         for (int i = startX; i < endX; i += intervalX)
         {
+            cnt++;
             for (int j = startY; j > endY; j -= intervalY)
             {
-                cnt++;
                 GameObject obj = Instantiate(cnt % 2 == 0 ? block : hardBlock, new Vector3(i, j, 0), Quaternion.identity);
                 obj.GetComponent<SpriteRenderer>().color = new Color(0.5f - cnt/100f, cnt / 100f, 1 - cnt/100f);
             }

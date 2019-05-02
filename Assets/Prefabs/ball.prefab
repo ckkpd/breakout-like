@@ -133,6 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpeed: 350
   leastSpeed: 350
-  maximumSpeed: 1500
+  maximumSpeed: 1750
   baseStrength: 1
   strength: 0

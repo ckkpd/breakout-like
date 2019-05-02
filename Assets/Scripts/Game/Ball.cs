@@ -37,6 +37,9 @@ public class Ball : MonoBehaviour
         {
             rb2d.velocity = rb2d.velocity.normalized * maximumSpeed;
         }
+
+        // 何かの理由でボールが異常な挙動を示したとき、削除する
+        if (Vector2.Distance(rb2d.position, Vector2.zero) > 1000) Destroy(this.gameObject);
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
