@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2333638041771668165}
   m_Layer: 0
   m_Name: UnbreakableBlock
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,3 +142,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 11400000, guid: b3df449199d3dbc47b9efd0195eab509, type: 2}
+  currentHp: 0

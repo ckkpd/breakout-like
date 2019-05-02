@@ -10,6 +10,7 @@ public class ItemBall : FallenSprite
 
     public override void OnObtained(Player player)
     {
+        PlaySound();
         GameController.instance.SpawnBall(new Vector2(player.transform.position.x, player.transform.position.y + 40), false);
     }
 }

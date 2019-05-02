@@ -24,6 +24,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         resultCanvas.enabled = false;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -42,6 +43,8 @@ public class UIController : MonoBehaviour
         gameCanvas.enabled = false;
         // そして結果のUIを表示する
         resultCanvas.enabled = true;
+
+        Cursor.visible = true;
 
         if(won)
         {

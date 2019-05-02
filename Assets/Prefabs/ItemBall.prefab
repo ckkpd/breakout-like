@@ -118,7 +118,7 @@ MonoBehaviour:
   speed: 1
   itemID: Ball
   itemDuration: 0
-  obtainingSound: {fileID: 0}
+  soundOnObtained: {fileID: 8300000, guid: 3b798e673eab0f54c9d758288b309f72, type: 3}
 --- !u!60 &8145573307650166620
 PolygonCollider2D:
   m_ObjectHideFlags: 0

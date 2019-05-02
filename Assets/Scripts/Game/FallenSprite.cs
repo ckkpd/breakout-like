@@ -7,7 +7,7 @@ public abstract class FallenSprite : MonoBehaviour, IEffect
     public float speed = 0.05f;
     public string itemID;
     public float itemDuration;
-    public AudioClip obtainingSound;
+    public AudioClip soundOnObtained;
     public static IEffect effectInstance;
 
     private void Start()
@@ -32,8 +32,8 @@ public abstract class FallenSprite : MonoBehaviour, IEffect
 
     public void PlaySound()
     {
-        AudioSource audioSource = GameObject.FindWithTag("Player").GetComponent<AudioSource>();
-        audioSource.PlayOneShot(obtainingSound);
+        AudioSource audioSource = GameController.instance.audioSource;
+        audioSource.PlayOneShot(soundOnObtained);
     }
 
     public abstract void OnEffect(Player player);

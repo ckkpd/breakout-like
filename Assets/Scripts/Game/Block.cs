@@ -8,7 +8,7 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     public BlockModel model;
-    int currentHp;
+    public int currentHp;
 
     void Start()
     {
@@ -22,6 +22,7 @@ public class Block : MonoBehaviour
     /// <param name="n">ブロックに与えるダメージ</param>
     public void SubstractHP(int n)
     {
+        Debug.Log(n);
         if (model.isUnbreakable)
         {
             GameController.instance.audioSource.PlayOneShot(model.soundOnTouch);

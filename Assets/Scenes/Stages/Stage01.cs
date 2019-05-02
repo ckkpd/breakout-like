@@ -20,6 +20,7 @@ public class Stage01 : MonoBehaviour
     void Generate()
     {
         GameObject block = GameController.instance.blockList.blockList[0];
+        GameObject hardBlock = GameController.instance.blockList.blockList[1];
         GameObject unbreakableBlock = GameController.instance.blockList.blockList[2];
 
         uint cnt = 0;
@@ -28,7 +29,7 @@ public class Stage01 : MonoBehaviour
             for (int j = startY; j > endY; j -= intervalY)
             {
                 cnt++;
-                GameObject obj = Instantiate(block, new Vector3(i, j, 0), Quaternion.identity);
+                GameObject obj = Instantiate(cnt % 2 == 0 ? block : hardBlock, new Vector3(i, j, 0), Quaternion.identity);
                 obj.GetComponent<SpriteRenderer>().color = new Color(0.5f - cnt/100f, cnt / 100f, 1 - cnt/100f);
             }
         }
