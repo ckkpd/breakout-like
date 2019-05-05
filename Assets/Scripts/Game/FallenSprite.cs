@@ -20,7 +20,7 @@ public abstract class FallenSprite : MonoBehaviour, IEffect
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();
             player.AddEffect(this.itemID, this.itemDuration);

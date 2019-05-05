@@ -6,7 +6,7 @@ using UnityEngine;
 /// プレイヤーが操作するバー
 /// </summary>
 public class Player : MonoBehaviour
-{
+{`
     private Rigidbody2D rb2d;
 
     private Vector2 position;

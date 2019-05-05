@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     public BlockListModel blockList;
 
     public int ballsLeft = 3;
-    public int ballsNum; // current amount of balls
+    public int ballsNum; //current amount of balls
     public int blocksNum; // current amount of blocks
     public int breakableBlocksNum; // current amount of breakable blocks
     public static int score;
@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
         // ボールがすでに存在するときに新たなボールを発射することはできない
         if (ballsNum > 0 && isUser) return false;
 
-        if (ballsLeft == 0) return false;
+        if (ballsLeft == 0 && isUser) return false;
         else
         {
             AddBall(Instantiate(normalBall, pos, Quaternion.identity).GetComponent<Ball>());
@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour
     public void OnBallDestroyed(Ball ball)
     {
         ballsNum--;
-        if(!gameFinished && ballsLeft == 0)
+        if(!gameFinished && ballsLeft == 0 && ballsNum == 0)
         {
             Debug.Log("You lose!");
             UIController.instance.OnGameEnd(false);

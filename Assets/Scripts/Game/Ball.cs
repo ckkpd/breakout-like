@@ -37,6 +37,15 @@ public class Ball : MonoBehaviour
         {
             rb2d.velocity = rb2d.velocity.normalized * maximumSpeed;
         }
+        if(Mathf.Abs(rb2d.velocity.x) < leastSpeed / 10)
+        {
+            rb2d.velocity = new Vector2(leastSpeed / 10 * rb2d.velocity.x < 0 ? -1 : 1, rb2d.velocity.y);
+        }
+        if(Mathf.Abs(rb2d.velocity.y) < leastSpeed / 10)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, leastSpeed / 10 * rb2d.velocity.y < 0 ? -1 : 1);
+        }
+        if (rb2d.velocity.magnitude == 0) rb2d.velocity = Vector2.one;
 
         // 何かの理由でボールが異常な挙動を示したとき、削除する
         if (Vector2.Distance(rb2d.position, Vector2.zero) > 1000) Destroy(this.gameObject);
