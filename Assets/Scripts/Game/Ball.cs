@@ -37,13 +37,10 @@ public class Ball : MonoBehaviour
         {
             rb2d.velocity = rb2d.velocity.normalized * maximumSpeed;
         }
-        if(Mathf.Abs(rb2d.velocity.x) < leastSpeed / 10)
+        if(Mathf.Abs(rb2d.velocity.y) < leastSpeed / 5)
         {
-            rb2d.velocity = new Vector2(leastSpeed / 10 * rb2d.velocity.x < 0 ? -1 : 1, rb2d.velocity.y);
-        }
-        if(Mathf.Abs(rb2d.velocity.y) < leastSpeed / 10)
-        {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, leastSpeed / 10 * rb2d.velocity.y < 0 ? -1 : 1);
+            Debug.Log("ga");
+            rb2d.velocity = new Vector2(rb2d.velocity.x, leastSpeed / 5 * (rb2d.velocity.y < 0 ? -1.5f : 1));
         }
         if (rb2d.velocity.magnitude == 0) rb2d.velocity = Vector2.one;
 

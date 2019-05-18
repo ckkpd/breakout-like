@@ -123,4 +123,21 @@ public class GameController : MonoBehaviour
             UIController.instance.OnGameEnd(true);
         }
     }
+
+    public void DebugFunc(string s)
+    {
+        switch(s)
+        {
+            case "ballXto0":
+                Debug.Log("ballXto0");
+                foreach (var i in balls)
+                {
+                    if (i == null) continue;
+                    i.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }

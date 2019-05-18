@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.P)) GameController.instance.DebugFunc("ballXto0");
         position = Input.mousePosition;
         screenToWorldPosition = Camera.main.ScreenToWorldPoint(position);
         screenToWorldPosition.y = startY;
