@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -18,50 +19,45 @@ public class Score
         this.name = name;
     }
 
-    public static IEnumerator GetHighScore(System.Action<Score> callback)
+    public static async Task<Score> GetHighScore()
     {
         var request = new UnityWebRequest(urlroot + "/api/v1/highest", UnityWebRequest.kHttpVerbGET);
         DownloadHandlerBuffer dH = new DownloadHandlerBuffer();
         request.downloadHandler = dH;
         request.SetRequestHeader("Content-Type", "application/json");
 
-        yield return request.SendWebRequest();
+        await request.SendWebRequest();
 
+        Score score = null;
         if (request.isNetworkError)
         {
             Debug.Log(request.error);
-            callback.Invoke(null);
         }
         else
         {
             if (request.responseCode == 200)
             {
-                var score = JsonUtility.FromJson<Score>(request.downloadHandler.text);
-                callback.Invoke(score);
-            }
-            else
-            {
-                callback.Invoke(null);
+                score = JsonUtility.FromJson<Score>(request.downloadHandler.text);
             }
         }
-        yield return null;
+        return score;
     }
-    public static IEnumerator GetScores(System.Action<List<Score>> callback)
+    public static async Task<List<Score>> GetScores()
     {
         var request = new UnityWebRequest(urlroot + "/api/v1/latest", UnityWebRequest.kHttpVerbGET);
         DownloadHandlerBuffer dH = new DownloadHandlerBuffer();
         request.downloadHandler = dH;
         request.SetRequestHeader("Content-Type", "application/json");
 
-        yield return request.SendWebRequest();
+        await request.SendWebRequest();
         /*while (!request.isDone)
         {
             yield return null;
         }*/
+        List<Score> scores = null;
         if (request.isNetworkError)
         {
             Debug.Log(request.error);
-            callback.Invoke(null);
         }
         else
         {
@@ -69,23 +65,18 @@ public class Score
             {
                 Debug.Log(request.downloadHandler.text);
                 var scores_ = JsonHelper.ListFromJson<string>(request.downloadHandler.text);
-                List<Score> scores = new List<Score>();
+                scores = new List<Score>();
                 scores_.ForEach(item =>
                 {
                     Debug.Log(item);
                     Debug.Log(JsonUtility.FromJson<Score>("{\"score\": 100}"));
                     scores.Add(JsonUtility.FromJson<Score>(item));
                 });
-                callback.Invoke(scores);
-            }
-            else
-            {
-                callback.Invoke(null);
             }
         }
-        yield return null;
+        return scores;
     }
-    public static IEnumerator Post(Score s)
+    public static async Task Post(Score s)
     {
         var request = new UnityWebRequest(urlroot + "/api/v1/add", "POST");
         byte[] bodyraw = Encoding.UTF8.GetBytes(JsonUtility.ToJson(s));
@@ -93,7 +84,7 @@ public class Score
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
-        yield return request.SendWebRequest();
+        await request.SendWebRequest();
 
         Debug.Log("Status Code(GET): " + request.responseCode);
     }
