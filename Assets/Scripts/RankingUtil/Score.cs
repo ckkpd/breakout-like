@@ -42,9 +42,13 @@ public class Score
         }
         return score;
     }
-    public static async Task<List<Score>> GetScores()
+    public static async Task<List<Score>> GetScores(uint n = 10)
     {
-        var request = new UnityWebRequest(urlroot + "/api/v1/latest", UnityWebRequest.kHttpVerbGET);
+        var request = new UnityWebRequest(urlroot + "/api/v1/latest", "POST");
+        string bodystr = $"{{\"n\": {n}}}";
+        Debug.Log(bodystr);
+        byte[] bodyraw = Encoding.UTF8.GetBytes(bodystr);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyraw);
         DownloadHandlerBuffer dH = new DownloadHandlerBuffer();
         request.downloadHandler = dH;
         request.SetRequestHeader("Content-Type", "application/json");
@@ -64,14 +68,8 @@ public class Score
             if (request.responseCode == 200)
             {
                 Debug.Log(request.downloadHandler.text);
-                var scores_ = JsonHelper.ListFromJson<string>(request.downloadHandler.text);
-                scores = new List<Score>();
-                scores_.ForEach(item =>
-                {
-                    Debug.Log(item);
-                    Debug.Log(JsonUtility.FromJson<Score>("{\"score\": 100}"));
-                    scores.Add(JsonUtility.FromJson<Score>(item));
-                });
+                var scores_ = JsonHelper.ListFromJson<Score>(request.downloadHandler.text);
+                scores = scores_;
             }
         }
         return scores;
@@ -95,6 +93,7 @@ public static class JsonHelper
     public static List<T> ListFromJson<T>(string json)
     {
         var newJson = "{ \"list\": " + json + "}";
+        Debug.Log(newJson);
         Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(newJson);
         return wrapper.list;
     }
