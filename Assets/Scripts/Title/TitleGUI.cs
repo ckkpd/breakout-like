@@ -21,7 +21,7 @@ public class TitleGUI : MonoBehaviour
     public void OnClickRanking()
     {
         Debug.Log("ButtonRanking clicked");
-        UpdateRanking();
+        _ = UpdateRanking();
         Debug.Log(canvasRanking.activeInHierarchy);
         canvasRanking.SetActive(!canvasRanking.activeInHierarchy);
     }
