@@ -77,6 +77,7 @@ public class Score
     public static async Task Post(Score s)
     {
         var request = new UnityWebRequest(urlroot + "/api/v1/add", "POST");
+        Debug.Log(JsonUtility.ToJson(s));
         byte[] bodyraw = Encoding.UTF8.GetBytes(JsonUtility.ToJson(s));
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyraw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
@@ -85,6 +86,7 @@ public class Score
         await request.SendWebRequest();
 
         Debug.Log("Status Code(GET): " + request.responseCode);
+        Debug.Log(request.downloadHandler.text);
     }
 }
 
