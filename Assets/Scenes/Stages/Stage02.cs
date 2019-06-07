@@ -62,8 +62,13 @@ public class Stage02 : MonoBehaviour
                 }
                 int x = startX + j * intervalX;
                 int y = startY - i * intervalY;
-                selectedBlock.GetComponent<SpriteRenderer>().color = 
-                Instantiate(selectedBlock, new Vector3(x, y), Quaternion.identity);
+                GameObject spawnedBlock = Instantiate(selectedBlock, new Vector3(x, y), Quaternion.identity);
+
+                if (map[i][j] != 3)
+                {
+                    spawnedBlock.GetComponent<SpriteRenderer>().color = new Color(0.5f + y / 100f, 0.5f + x / 100f, 0.5f);
+                }
+
             }
         }
     }

@@ -85,7 +85,7 @@ public class Score
 
         await request.SendWebRequest();
 
-        Debug.Log("Status Code(GET): " + request.responseCode);
+        Debug.Log("Status Code(POST): " + request.responseCode);
         Debug.Log(request.downloadHandler.text);
     }
 }

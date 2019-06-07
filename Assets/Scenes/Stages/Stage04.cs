@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Stage01 の生成を行います。
+/// Stage04 の生成を行います。
 /// </summary>
-public class Stage01 : MonoBehaviour
+public class Stage04 : MonoBehaviour
 {
     public int startX = -300, startY = 100, intervalX = 75, intervalY = 25, endX = 380, endY = -240;
 

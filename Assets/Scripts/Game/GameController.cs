@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// ゲームの中で使用されるパラメータの管理をします。
@@ -26,7 +27,9 @@ public class GameController : MonoBehaviour
     public int ballsNum; //current amount of balls
     public int blocksNum; // current amount of blocks
     public int breakableBlocksNum; // current amount of breakable blocks
+
     public static int score;
+    public int ballsLeftScore = 500;
 
     public ItemListModel itemlist;
     public float itemDropProbability = 0.1f;
@@ -41,17 +44,17 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        Debug.Log(GetCurrentStage());
     }
 
-    public static void initializeGame()
+    public static void InitializeGame()
     {
-        if(!gameFinished)
+        if (!gameFinished)
         {
             throw new System.Exception("The game has not been ended!");
         }
-
-        score = 0;
         gameFinished = false;
+        score = 0;
     }
     /// <summary>
     /// ボールを生成します。必ずここから生成してください。
@@ -84,7 +87,7 @@ public class GameController : MonoBehaviour
         if(!gameFinished && ballsLeft == 0 && ballsNum == 0)
         {
             Debug.Log("You lose!");
-            UIController.instance.OnGameEnd(false);
+            UIController.instance.OnStageEnd(false);
         }
     }
 
@@ -102,6 +105,7 @@ public class GameController : MonoBehaviour
     }
     public void OnBlockDestroyed(Block block)
     {
+        if (gameFinished) return;
         float rnd = Random.Range(0f, 1f);
         if(rnd <= itemlist.itemDropProbability)
         {
@@ -120,8 +124,19 @@ public class GameController : MonoBehaviour
             {
                 if (i != null) Destroy(i.gameObject);
             });
-            UIController.instance.OnGameEnd(true);
+            OnStageEnd();
         }
+    }
+
+    public void OnStageEnd()
+    {
+        score += ballsLeft * ballsLeftScore;
+        UIController.instance.OnStageEnd(true);
+    }
+
+    public void OnGameEnd()
+    {
+        InitializeGame();
     }
 
     public void DebugFunc(string s)
@@ -139,5 +154,10 @@ public class GameController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public static int GetCurrentStage()
+    {
+        return int.Parse(SceneManager.GetActiveScene().name.Substring(5));
     }
 }

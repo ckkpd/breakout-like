@@ -48,7 +48,7 @@ public class ResultGUI : MonoBehaviour
         if(name.Length < 1 || name.Length > 10)
         {
             inputFieldName.text = "";
-            inputFieldName.GetComponentInChildren<Text>().text = "!名前が長すぎます。!";
+            inputFieldName.GetComponentInChildren<Text>().text = "!Too long name!";
         } else
         {
             finishButton.interactable = false;
