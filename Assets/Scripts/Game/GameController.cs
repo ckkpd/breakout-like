@@ -119,7 +119,6 @@ public class GameController : MonoBehaviour
         if(breakableBlocksNum == 0)
         {
             Debug.Log("You won!");
-            gameFinished = true;
             balls.ForEach(i =>
             {
                 if (i != null) Destroy(i.gameObject);
