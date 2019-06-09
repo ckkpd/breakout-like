@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour
     public int baseStrength = 1;
     public int strength;
 
-    int blockTouched = 0;
+    public int blockTouched = 0;
 
     void Start()
     {
@@ -42,6 +42,11 @@ public class Ball : MonoBehaviour
             Debug.Log("ga");
             rb2d.velocity = new Vector2(rb2d.velocity.x, leastSpeed / 5 * (rb2d.velocity.y < 0 ? -1.5f : 1));
         }
+        if (Mathf.Abs(rb2d.velocity.x) < leastSpeed / 15)
+        {
+            Debug.Log("ga");
+            rb2d.velocity = new Vector2(leastSpeed / 15 * (rb2d.velocity.y < 0 ? -1.5f : 1), rb2d.velocity.y);
+        }
         if (rb2d.velocity.magnitude == 0) rb2d.velocity = Vector2.one;
 
         // 何かの理由でボールが異常な挙動を示したとき、削除する
@@ -54,6 +59,7 @@ public class Ball : MonoBehaviour
         {
             collision.gameObject.GetComponent<Block>().SubstractHP(strength);
             blockTouched++;
+            // if (blockTouched >= 100) Destroy(this.gameObject);
         }
     }
 
