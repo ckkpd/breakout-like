@@ -8,7 +8,7 @@ using UnityEngine;
 public class Stage04 : MonoBehaviour
 {
     public int startX = -300, startY = 100, intervalX = 75, intervalY = 25, endX = 380, endY = -240;
-
+    public GameObject blockParent;
     void Start()
     {
         Generate();
@@ -29,7 +29,7 @@ public class Stage04 : MonoBehaviour
             cnt++;
             for (int j = startY; j > endY; j -= intervalY)
             {
-                GameObject obj = Instantiate(cnt % 2 == 0 ? block : hardBlock, new Vector3(i, j, 0), Quaternion.identity);
+                GameObject obj = Instantiate(cnt % 2 == 0 ? block : hardBlock, new Vector3(i, j, 0), Quaternion.identity, blockParent.transform);
                 obj.GetComponent<SpriteRenderer>().color = new Color(0.5f - cnt/100f, cnt / 100f, 1 - cnt/100f);
             }
         }

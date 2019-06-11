@@ -35,11 +35,12 @@ public class GameController : MonoBehaviour
     public float itemDropProbability = 0.1f;
 
     public float fallenItemSpeed = 1f;
-    public static bool gameFinished = false;
+    public static bool stageFinished = false;
 
     private void Awake()
     {
         instance = this;
+        stageFinished = false;
     }
     private void Start()
     {
@@ -49,11 +50,7 @@ public class GameController : MonoBehaviour
 
     public static void InitializeGame()
     {
-        if (!gameFinished)
-        {
-            throw new System.Exception("The game has not been ended!");
-        }
-        gameFinished = false;
+        stageFinished = false;
         score = 0;
     }
     /// <summary>
@@ -84,7 +81,7 @@ public class GameController : MonoBehaviour
     public void OnBallDestroyed(Ball ball)
     {
         ballsNum--;
-        if(!gameFinished && ballsLeft == 0 && ballsNum == 0)
+        if(!stageFinished && ballsLeft == 0 && ballsNum == 0)
         {
             Debug.Log("You lose!");
             UIController.instance.OnStageEnd(false);
@@ -105,7 +102,7 @@ public class GameController : MonoBehaviour
     }
     public void OnBlockDestroyed(Block block)
     {
-        if (gameFinished) return;
+        if (stageFinished) return;
         float rnd = Random.Range(0f, 1f);
         if(rnd <= itemlist.itemDropProbability)
         {
@@ -130,6 +127,7 @@ public class GameController : MonoBehaviour
     public void OnStageEnd()
     {
         score += ballsLeft * ballsLeftScore;
+        stageFinished = true;
         UIController.instance.OnStageEnd(true);
     }
 
