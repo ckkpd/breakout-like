@@ -16,5 +16,5 @@ MonoBehaviour:
   isUnbreakable: 1
   score: 0
   scoreOnTouch: 0
-  soundOnTouch: {fileID: 8300000, guid: c07c98d50107e1742b78c385239a6045, type: 3}
+  soundOnTouch: {fileID: 8300000, guid: b443623a4045e4c0bacc32dbc9f524fb, type: 3}
   soundOnBreak: {fileID: 0}

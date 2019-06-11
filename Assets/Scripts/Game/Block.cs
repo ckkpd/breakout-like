@@ -9,11 +9,16 @@ public class Block : MonoBehaviour
 {
     public BlockModel model;
     public int currentHp;
-
+    
     void Start()
     {
         GameController.instance.AddBlock(this);
         currentHp = model.hp;
+    }
+
+    public void SetHP(int n)
+    {
+        this.currentHp = n;
     }
 
     /// <summary>
