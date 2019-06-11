@@ -9,7 +9,7 @@ using System.Linq;
 public class Stage03 : MonoBehaviour
 {
     public int startX = -300, startY = 100, intervalX = 75, intervalY = 25, endX = 360, endY = -240;
-
+    public GameObject blockParent;
     void Start()
     {
         Generate();
@@ -52,7 +52,7 @@ public class Stage03 : MonoBehaviour
                 int hp = int.Parse(map[i][j].ToString());
                 int x = startX + j * intervalX;
                 int y = startY - i * intervalY;
-                GameObject spawnedBlock = Instantiate(selectedBlock, new Vector3(x, y), Quaternion.identity);
+                GameObject spawnedBlock = Instantiate(selectedBlock, new Vector3(x, y), Quaternion.identity, blockParent.transform);
 
                 Block bb = spawnedBlock.GetComponent<Block>();
                 Debug.Log(bb.currentHp);
