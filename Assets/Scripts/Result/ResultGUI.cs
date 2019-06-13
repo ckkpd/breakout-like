@@ -30,7 +30,7 @@ public class ResultGUI : MonoBehaviour
         var index = scores.Select(v => v.score).ToList().BinarySearch(GameController.score);
         if (index <= N)
         {
-            scoreText.text = scoreText.text + $" {scores.Capacity - index}位";
+            scoreText.text = scoreText.text + $" {scores.Count - index}位";
         } else
         {
             scoreText.text = scoreText.text + $" 圏外({N}位未満)";

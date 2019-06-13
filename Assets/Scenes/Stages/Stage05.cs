@@ -4,58 +4,64 @@ using UnityEngine;
 using System.Linq;
 
 /// <summary>
-/// Stage02 の生成を行います。
+/// Stage05 の生成を行います。
 /// </summary>
-public class Stage02 : MonoBehaviour
+public class Stage05 : MonoBehaviour
 {
     public int startX = -300, startY = 100, intervalX = 75, intervalY = 25, endX = 360, endY = -240;
     public GameObject blockParent;
+
     void Start()
     {
         Generate();
+    }
+
+    Color GetRandomColor()
+    {
+        return new Color(Random.value, Random.value, Random.value);
     }
 
     /// <summary>
     /// ステージの生成をします。
     /// </summary>
 
-    int[][] map;
+    string[] map;
     void Generate()
     {
-        map = new int[][]
+        map = new string[]
         {
-            new int[] {3,2,3,2,3,2,3,2,3},
-            new int[] {3,0,0,0,0,0,0,0,3},
-            new int[] {3,1,2,1,2,1,2,1,3},
-            new int[] {3,0,0,0,0,0,0,0,3},
-            new int[] {3,2,1,2,1,2,1,2,3},
-            new int[] {3,2,2,2,0,2,2,2,3},
-            new int[] {3,1,1,1,2,1,1,1,3},
-            new int[] {3,0,0,0,0,0,0,0,3},
-            new int[] {3,1,2,1,2,1,2,1,3},
-            new int[] {3,0,0,0,0,0,0,0,3},
-            new int[] {3,2,1,2,1,2,1,2,3},
-            new int[] {3,0,0,0,0,0,0,0,3},
-            new int[] {3,2,2,2,2,2,2,2,3}
+            "#.*.o.#.*",
+            ".*.o.#.*.",
+            "*.o.#.*.o",
+            ".o.#.*.o.",
+            "o.#.*.o.#",
+            ".#.*.o.#.",
+            "#.*.o.#.*",
+            ".*.o.#.*.",
+            "*.o.#.*.o",
+            ".o.#.*.o.",
+            "o.#.*.o.#",
+            ".#.*.o.#.",
+            "#.*.o.#.*",
         };
         GameObject block = GameController.instance.blockList.blockList[0];
         GameObject hardBlock = GameController.instance.blockList.blockList[1];
         GameObject unbreakableBlock = GameController.instance.blockList.blockList[2];
 
-        for(int i = 0; i < map.Length; i++)
+        for (int i = 0; i < map.Length; i++)
         {
-            for(int j = 0; j < map[i].Length; j++)
+            for (int j = 0; j < map[i].Length; j++)
             {
                 GameObject selectedBlock = null;
-                switch(map[i][j])
+                switch (map[i][j])
                 {
-                    case 1:
+                    case '.':
                         selectedBlock = block;
                         break;
-                    case 2:
+                    case '*':
                         selectedBlock = hardBlock;
                         break;
-                    case 3:
+                    case '#':
                         selectedBlock = unbreakableBlock;
                         break;
                     default: continue;
@@ -64,9 +70,9 @@ public class Stage02 : MonoBehaviour
                 int y = startY - i * intervalY;
                 GameObject spawnedBlock = Instantiate(selectedBlock, new Vector3(x, y), Quaternion.identity, blockParent.transform);
 
-                if (map[i][j] != 3)
+                if (map[i][j] != '#')
                 {
-                    spawnedBlock.GetComponent<SpriteRenderer>().color = new Color(0.5f + y / 100f, 0.5f + x / 100f, 0.5f);
+                    spawnedBlock.GetComponent<SpriteRenderer>().color = GetRandomColor();
                 }
 
             }

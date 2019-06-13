@@ -66,9 +66,18 @@ public class UIController : MonoBehaviour
             nextButton.interactable = false;
         }
 
+        if(GameController.GetCurrentStage() == 5)
+        {
+            Destroy(nextButton.gameObject);
+            nextButton.GetComponentInChildren<Text>().text = "Done!";
+        }
         resultDetailText.text = GetResultDetailString();
     }
 
-    public void OnClickNext() => SceneManager.LoadScene(string.Format("Stage{0:00}", GameController.GetCurrentStage() + 1));
+    public void OnClickNext()
+    {
+        if (GameController.GetCurrentStage() == 5) SceneManager.LoadScene("Result");
+        SceneManager.LoadScene(string.Format("Stage{0:00}", GameController.GetCurrentStage() + 1));
+    }
     public void OnClickExit() => SceneManager.LoadScene("Result");
 }

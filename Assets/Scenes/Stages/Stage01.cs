@@ -28,7 +28,7 @@ public class Stage01 : MonoBehaviour
             ".........",
             "..*.*.*..",
             ".........",
-            "....#....",
+            ".........",
             ".........",
             "..*.*.*..",
             ".........",
@@ -61,7 +61,7 @@ public class Stage01 : MonoBehaviour
 
                 if (map[i][j] != 3)
                 {
-                    spawnedBlock.GetComponent<SpriteRenderer>().color = new Color(0.5f + y / 100f, 0.5f + x / 100f, 0.5f);
+                    spawnedBlock.GetComponent<SpriteRenderer>().color = new Color(0.1f * i, 0.1f * i, 0.1f * i);
                 }
 
             }
