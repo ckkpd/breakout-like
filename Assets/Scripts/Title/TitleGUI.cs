@@ -28,7 +28,7 @@ public class TitleGUI : MonoBehaviour
 
     public async Task UpdateRanking()
     {
-        var rankingContent = await Ranking.LoadRanking(scoreCount);
+        var rankingContent = Ranking.LoadRanking(await Score.GetScores(), scoreCount);
         rankingText.text = rankingContent;
     }
 

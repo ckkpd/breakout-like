@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
+  m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
 --- !u!114 &1524816357
 MonoBehaviour:
@@ -1223,7 +1223,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 256.56, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633458997
 MonoBehaviour:

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 public class Ranking : MonoBehaviour
 {
-    public static async Task<string> LoadRanking(uint n = 10)
+    public static string LoadRanking(List<Score> scores, uint n = 10)
     {
-        var scores = await Score.GetScores(n);
         // Descending sort
         scores.Sort((a, b) => b.score - a.score);
 

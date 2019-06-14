@@ -17,24 +17,31 @@ public class ResultGUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _ = UpdateRanking();
         scoreText.text = $"{GameController.score}点";
+        _ = UpdateRanking();
     }
 
     async Task UpdateRanking()
     {
-        var rankingContent = await Ranking.LoadRanking(N);
-        rankingText.text = rankingContent;
 
         var scores = await Score.GetScores(N);
-        var index = scores.Select(v => v.score).ToList().BinarySearch(GameController.score);
+        var rankingContent = Ranking.LoadRanking(scores, N);
+        rankingText.text = rankingContent;
+        Debug.Log("updateranking");
+        var index = scores.Select(v => v.score).ToArray().GetUpperBound(GameController.score);
+        Debug.Log("u123456");
+        Debug.Log(index);
+        Debug.Log(scoreText.text);
+
+
         if (index <= N)
         {
-            scoreText.text = scoreText.text + $" {scores.Count - index}位";
+            scoreText.text = scoreText.text + $" {index+2}位";
         } else
         {
             scoreText.text = scoreText.text + $" 圏外({N}位未満)";
         }
+        Debug.Log("test");
     }
 
     public void OnClickFinishButton()
