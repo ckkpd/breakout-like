@@ -11,6 +11,8 @@ public class Stage05 : MonoBehaviour
     public int startX = -300, startY = 100, intervalX = 75, intervalY = 25, endX = 360, endY = -240;
     public GameObject blockParent;
 
+    public float duration = 100.0f;
+    
     void Start()
     {
         Generate();
@@ -77,5 +79,11 @@ public class Stage05 : MonoBehaviour
 
             }
         }
+    }
+    private void Update()
+    {
+        float phi = Time.time / duration * 2 * Mathf.PI;
+        float amp = Mathf.Cos(phi) * 0.5f + 0.5f;
+        Camera.main.backgroundColor = Color.HSVToRGB(amp, 0.8f, 0.5f);
     }
 }
