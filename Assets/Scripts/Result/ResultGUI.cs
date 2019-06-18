@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
@@ -12,36 +13,50 @@ public class ResultGUI : MonoBehaviour
     public Text scoreText;
     public InputField inputFieldName;
     public Button finishButton;
-    public readonly uint N = 50;
+    public readonly uint N = 200;
+    private SynchronizationContext mainContext;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("started res");
         scoreText.text = $"{GameController.score}点";
         _ = UpdateRanking();
+        mainContext = SynchronizationContext.Current;
     }
 
     async Task UpdateRanking()
     {
-
         var scores = await Score.GetScores(N);
+        scores.Sort((a, b) => b.score - a.score);
         var rankingContent = Ranking.LoadRanking(scores, N);
         rankingText.text = rankingContent;
         Debug.Log("updateranking");
-        var index = scores.Select(v => v.score).ToArray().GetUpperBound(GameController.score);
+
+        ulong rank = 1;
+        foreach(var s in scores) {
+            if(s.score >= GameController.score) rank++;
+            else break;
+        }
+
         Debug.Log("u123456");
-        Debug.Log(index);
+        Debug.Log(rank);
         Debug.Log(scoreText.text);
 
-
-        if (index <= N)
+        if (rank <= N)
         {
-            scoreText.text = scoreText.text + $" {index+2}位";
+            Debug.Log("<=");
+            mainContext.Post(_ => UpdateGUI(scoreText.text + $" {rank}位"), null);
         } else
         {
-            scoreText.text = scoreText.text + $" 圏外({N}位未満)";
+            Debug.Log(">");
+            mainContext.Post(_ => UpdateGUI(scoreText.text + $" 圏外({N}位未満)"), null);
         }
         Debug.Log("test");
+    }
+
+    public void UpdateGUI(string str) {
+        scoreText.text = str;
     }
 
     public void OnClickFinishButton()
