@@ -10,9 +10,9 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     /* balls spawned in the field. */
-    List<Ball> balls = new List<Ball>();
+    public List<Ball> balls = new List<Ball>();
     /* blocks spawned in the field. */
-    List<Block> blocks = new List<Block>();
+    public List<Block> blocks = new List<Block>();
 
     /// <summary>
     /// 外部から呼び出すときに使うインスタンスです。
