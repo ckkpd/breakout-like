@@ -1884,6 +1884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a60cc5cc981a04dbdd123959fb9d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  balls: []
+  blocks: []
   audioSource: {fileID: 0}
   normalBall: {fileID: 5517737011889041904, guid: ed5f6b37a9605f0479c5d183712c639f,
     type: 3}

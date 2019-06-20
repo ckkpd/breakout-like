@@ -8,6 +8,7 @@ TagManager:
   - Block
   - Ball
   - Objects
+  - SubBall
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - 
   - 
   - Ball
-  - 
-  - 
+  - SubBall
+  - PlayerBar
   - 
   - 
   - 

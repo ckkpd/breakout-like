@@ -13,7 +13,9 @@ public class ItemLarge : FallenSprite
     {
         Debug.Log("itemlarge");
     	foreach(var ball in GameController.instance.balls) {
+            if (ball == null) continue;
             ball.gameObject.transform.localScale = new Vector3(4, 4);
+            ball.leastSpeed += 100;
     	}
     }
 }

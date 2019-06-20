@@ -15,4 +15,6 @@ MonoBehaviour:
   items:
   - {fileID: 8145573307650166617, guid: e5c4e44396dc1ff40b148964cbb9a950, type: 3}
   - {fileID: 8768443304745645073, guid: 16a355d5070464d7bb95d2350d9c55af, type: 3}
+  - {fileID: 7783687659739990682, guid: b2f532581fd1341ac9a7da89388d7293, type: 3}
+  - {fileID: 5206237848505071496, guid: eb311932137d548e6a39685b7649f9ba, type: 3}
   itemDropProbability: 0.1

@@ -9,6 +9,7 @@ public abstract class FallenSprite : MonoBehaviour, IEffect
     public float itemDuration;
     public AudioClip soundOnObtained;
     public static IEffect effectInstance;
+    public int obtainScore = 150;
 
     private void Start()
     {
@@ -20,11 +21,13 @@ public abstract class FallenSprite : MonoBehaviour, IEffect
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("OnTrigger");
         if (collision.gameObject.CompareTag("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();
             player.AddEffect(this.itemID, this.itemDuration);
             OnObtained(player);
+            GameController.AddScore(this.obtainScore);
 
             Destroy(this.gameObject);
         }
