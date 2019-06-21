@@ -17,4 +17,4 @@ MonoBehaviour:
   score: 100
   scoreOnTouch: 0
   soundOnTouch: {fileID: 0}
-  soundOnBreak: {fileID: 8300000, guid: 52542204d226c482a8d469521dee462e, type: 3}
+  soundOnBreak: {fileID: 8300000, guid: c9df77b3e2bfda54da41f42e14ae6b07, type: 3}

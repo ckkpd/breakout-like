@@ -11,6 +11,7 @@ public class ItemLarge : FallenSprite
 
     public override void OnObtained(Player player)
     {
+        PlaySound();
         Debug.Log("itemlarge");
     	foreach(var ball in GameController.instance.balls) {
             if (ball == null) continue;

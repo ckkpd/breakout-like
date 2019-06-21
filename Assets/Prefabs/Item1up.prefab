@@ -145,3 +145,4 @@ MonoBehaviour:
   itemID: 1up
   itemDuration: 0
   soundOnObtained: {fileID: 8300000, guid: c07c98d50107e1742b78c385239a6045, type: 3}
+  obtainScore: 150

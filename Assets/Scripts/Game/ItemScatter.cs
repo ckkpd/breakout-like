@@ -8,11 +8,10 @@ public class ItemScatter : FallenSprite
     private int N = 3;
     public override void OnEffect(Player player)
     {
-        throw new System.NotImplementedException();
     }
     public override void OnObtained(Player player)
     {
-        Debug.Log("ondebug");
+        PlaySound();
         for(int i = 0; i < N; i++)
         {
             var ball = Instantiate(subball);

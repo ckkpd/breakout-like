@@ -11,6 +11,7 @@ public class Item1up : FallenSprite
 
     public override void OnObtained(Player player)
     {
+        PlaySound();
         GameController.instance.ballsLeft++;
     }
 }

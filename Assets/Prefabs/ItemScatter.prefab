@@ -147,6 +147,6 @@ MonoBehaviour:
   speed: 0.05
   itemID: scatter
   itemDuration: 0
-  soundOnObtained: {fileID: 8300000, guid: 52542204d226c482a8d469521dee462e, type: 3}
+  soundOnObtained: {fileID: 8300000, guid: 3491f16e171c16244a6a9ea602b8ed6c, type: 3}
   obtainScore: 150
   subball: {fileID: 313101331222557319, guid: 22a4c19ec6e4e4ec587e32335a68d996, type: 3}
