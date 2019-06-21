@@ -78,6 +78,7 @@ public class ResultGUI : MonoBehaviour
             Score score = new Score(GameController.score, name);
 
             await Score.Post(score);
+            GameController.instance.OnGameEnd();
 
             SceneManager.LoadScene("Title");
         }
